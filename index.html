@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
+<body>
+
+<p>Click the table headers to change the sorting order:</p>
+
+<div ng-app="myApp" ng-controller="namesCtrl">
+
+<table border="1" width="100%">
+<tr>
+<th ng-click="orderByMe('name')">Name</th>
+<th ng-click="orderByMe('last')">Last Name</th>
+<th ng-click="orderByMe('born')">State Born</th>
+<th ng-click="orderByMe('college')">College</th>
+<th ng-click="orderByMe('color')">Fav Color</th>
+<th ng-click="orderByMe('food')">Fav Food</th>
+
+</tr>
+<tr ng-repeat="x in names | orderBy:myOrderBy">
+<td>{{x.name}}</td>
+<td>{{x.last}}</td>
+<td>{{x.born}}</td>
+<td>{{x.college}}</td>
+<td>{{x.color}}</td>
+<td>{{x.food}}</td>
+</tr>
+</table>
+
+</div>
+
+<script>
+angular.module('myApp', []).controller('namesCtrl', function($scope) {
+    $scope.names = [
+        {name:'Brooke',last:'Schroen',born:'Michigan',college:'Art Institute',color:'Orange',food:'Pizza'},
+        {name:'Calvin',last:'Brown',born:'Illinois',college:'NIU',color:'Blue',food:'Flank Steak'},
+        {name:'Jenna',last:'Smith',born:'Florida',college:'Illinois',color:'Green',food:'Pasta'},
+        {name:'Ashley',last:'Willams',born:'Michigan',college:'UCF',color:'Yellow',food:'Fish'},
+        {name:'Jeff',last:'Preston',born:'South Carolina',college:'Purdue',color:'Red',food:'Tacos'},
+        {name:'Leslie',last:'West',born:'Nevada',college:'WMU',color:'Purple',food:'pizza'},
+        {name:'Sam',last:'Smith',born:'Georgia',college:'Illinois',color:'Green',food:'Chinese'},
+        {name:'Patrica',last:'Morrison',born:'Virgina',college:'MSU',color:'Green',food:'Chicken'},
+        {name:'Rocco',last:'Brown',born:'Illinois',college:'NIU',color:'orange',food:'Purina'},
+        {name:'Quinn',last:'Brown',born:'Illinois',college:'Art Institute',color:'red',food:'Greenies'}
+        ];
+    $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }
+});
+</script>
+
+</body>
+</html>
+
